@@ -1,0 +1,223 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+
+    background-color: white;
+    color: black;
+}
+.start {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.start .logo{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.start input{
+    width: 345px;
+    height: 49px;
+
+    border: 1px solid #000000;
+    border-radius: 12px;
+    margin-bottom: 3%;
+
+    text-align: center;
+}
+.start input::placeholder{
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19px;
+}
+.start button{
+    width: 345px;
+    height: 72px;
+
+    background: white;
+    border: solid 3px #FFEF61;
+    border-radius: 12px;
+    margin-bottom: 2%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-style: Bold;
+    font-size: 20px;
+    line-height: 23px;
+}
+
+
+.flashCard{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.flashCard .miniLogo{
+    position: absolute;
+    left: 15px;
+    top: 15px;
+}
+.flashCard .title{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 28px;
+    line-height: 33px;
+
+    margin: 2% 0;
+}
+.card{
+    width: 352px;
+    height: 518px;
+    margin-bottom: 2%;
+
+    background: #FFFFFF;
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.cardsTotal{
+    margin: 10px;
+
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+
+    display: flex;
+    justify-content: flex-end;
+}
+.question{
+    margin: 0 2%;
+
+    font-style: normal;
+    font-weight: bold;
+    font-size: 28px;
+    line-height: 33px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.turn{
+    margin: 10px;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.topContainer{
+    margin-top: 10px;
+
+    display: flex;
+    justify-content: center;
+
+    position: relative;
+}
+.topContainer .cardsTotal{
+    position: absolute;
+    right: 10px;
+
+    margin: 0;
+}
+.topContainer .question{
+    width: 70%;
+    padding-top: 8px;
+
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 14px;
+}
+.answer {
+    margin: 0 auto;
+
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+}
+.buttons {
+    margin-bottom: 2%;
+
+    display: flex;
+    justify-content: space-evenly;
+}
+.buttons button{
+    width: 65px;
+    height: 48px;
+    background-color: white;
+    border-radius: 12px;
+
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.aprendi{
+    border: 3px solid #000000;
+}
+.failure{
+    border: 3px solid #F74848;
+}
+.lembrei{
+    border: 3px solid #62DB38;
+}
+.zap{
+    border: 3px solid #FFEF61;
+}
+
+
+.result{
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.result h1{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 42px;
+}
+.result span{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 26px;
+    text-align: center;
+}
+.tryAgain{
+    width: 345px;
+    height: 72px;
+
+    background: white;
+    border: solid 3px #FFEF61;
+    border-radius: 12px;
+    margin-top: 3%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-style: Bold;
+    font-size: 20px;
+    line-height: 23px;
+}
