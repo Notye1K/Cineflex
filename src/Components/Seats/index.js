@@ -25,6 +25,16 @@ export default function Seats() {
             <H1 title='Selecione o(s) assento(s)' />
             {data.seats.map(i => <Seat key={i.id} {...i} />)}
             <div> 3 bolinhas</div>
+            <Questions question='Nome do comprador' />
+            <Questions question='CPF do comprador' />
+            <button>Reservar assento(s)</button>
+            <footer>
+                <img src={data.movie.posterURL} alt={data.movie.title} />
+                <div>
+                    <p>{data.movie.title}</p>
+                    <p>{data.day.weekday} - {data.name}</p>
+                </div>
+            </footer>
         </>
     )
 }
@@ -32,7 +42,16 @@ export default function Seats() {
 function Seat({ name }) {
     return (
         <>
-            {name}
+            {name} -
+        </>
+    )
+}
+
+function Questions({ question }) {
+    return (
+        <>
+            <p>{question}:</p>
+            <input type="text" placeholder={`${question}...`} />
         </>
     )
 }

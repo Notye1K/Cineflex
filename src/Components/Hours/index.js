@@ -22,7 +22,7 @@ export default function Hours() {
 
     return (
         <>
-            <H1 title='Selecione o horário'></H1>
+            <H1 title='Selecione o horário' />
             {data.days.map(i => <Section key={i.id} {...i} />)}
             <div>
                 <img src={data.posterURL} alt={data.title}></img>
