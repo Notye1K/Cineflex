@@ -7,13 +7,13 @@ import { Link } from "react-router-dom"
 
 export default function Movies() {
     const [data, setData] = useState(null)
-    
-    useEffect (() => {
-        const promise = axios.get('https://mock-api.driven.com.br/api/v4/cineflex/movies')
-        promise.then (answer => setData(answer.data))
-    },[])
 
-    if(data === null) {
+    useEffect(() => {
+        const promise = axios.get('https://mock-api.driven.com.br/api/v4/cineflex/movies')
+        promise.then(answer => setData(answer.data))
+    }, [])
+
+    if (data === null) {
         return (
             <>
                 Carregando
@@ -23,7 +23,7 @@ export default function Movies() {
 
     return (
         <>
-            {data.map(i => <Link key={i.id} to={`/filme/${i.id}`}><Movie {...i}/></Link>)}
+            {data.map(i => <Link key={i.id} to={`/filme/${i.id}`}><Movie {...i} /></Link>)}
         </>
     )
 }

@@ -1,4 +1,5 @@
 import Movies from '../Movies'
+import H1 from '../H1'
 
 export default function MainPage() {
     return (
@@ -7,7 +8,7 @@ export default function MainPage() {
                 CINEFLEX
             </div>
 
-            <h1>Selecione o filme</h1>
+            <H1 title='Selecione o filme'></H1>
 
             <Movies></Movies>
         </>
