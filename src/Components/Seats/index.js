@@ -4,11 +4,12 @@ import { useParams, Link } from 'react-router-dom'
 import H1 from '../H1'
 import styled from 'styled-components'
 
-export default function Seats({ name, cpf, setName, setCpf, setMovie, setDate, setMovieHour, setSeat } ) {
+export default function Seats({ personName, cpf, setPersonName, setCpf, setMovie, setDate, setMovieHour, setSeat } ) {
     const [data, setData] = useState(null)
     const { idSessao } = useParams()
     const [chairs, setChairs] = useState([])
     const [chairsName, setChairsName] = useState([])
+    const [freeToGo, setFreeToGo] = useState(false)
     
 
     useEffect(() => {
@@ -52,11 +53,11 @@ export default function Seats({ name, cpf, setName, setCpf, setMovie, setDate, s
                 </div>
             </ThreeCircles>
 
-            <Questions question='Nome do comprador' name={name} setName={setName}/>
-            <Questions question='CPF do comprador' cpf={cpf} setCpf={setCpf}/>
+            <Questions question='Nome do comprador' personName={personName} setPersonName={setPersonName} chairs={chairs} setFreeToGo={setFreeToGo}/>
+            <Questions question='CPF do comprador' cpf={cpf} setCpf={setCpf} chairs={chairs} setFreeToGo={setFreeToGo}/>
 
-            <Link nome='kkkkkkk' to='/sucesso'>
-                <Button onClick={() => finishing(chairs, chairsName, cpf, name, setSeat)}>Reservar assento(s)</Button>
+            <Link to={freeToGo && '/sucesso'}>
+                <Button onClick={() => finishing(chairs, chairsName, cpf, personName, setSeat, setFreeToGo)}>Reservar assento(s)</Button>
             </Link>
             <Footer>
                 <img src={data.movie.posterURL} alt={data.movie.title} />
@@ -78,19 +79,19 @@ function Seat({ name, isAvailable, id, chairs, chairsName, setChairs, setChairsN
     )
 }
 
-function Questions({ question, name, cpf, setName, setCpf }) {
+function Questions({ question, personName, cpf, setPersonName, setCpf }) {
     return (
         <QuestionContainer>
             <p>{question}:</p>
             <input type="text" placeholder={`${question}...`}
-                value={question === 'Nome do comprador' ? name : cpf}
-                onChange={event => question === 'Nome do comprador' ? setName(event.target.value) : setCpf(event.target.value)} />
+                value={question === 'Nome do comprador' ? personName : cpf}
+                onChange={event => question === 'Nome do comprador' ? (
+                    setPersonName(event.target.value)) : setCpf(event.target.value)} />
         </QuestionContainer>
     )
 }
 
 function click(isAvailable, name, element, id, chairs, chairsName, setChairs, setChairsName) {
-    console.log(id)
     if (!isAvailable) return alert('Esse assento não está disponível')
     else {
         element.classList.toggle('clicked')
@@ -101,12 +102,25 @@ function click(isAvailable, name, element, id, chairs, chairsName, setChairs, se
     setChairsName(arrayName)
 }
 
-function finishing(chairs, chairsName, cpf, name, setSeat) {
-    if(cpf === '' || name === '' || chairs.length === 0) return alert ('preecha nome e cpf e escolha uma cadeira')
-    console.log(chairs);
+function verify(setFreeToGo, cpf, personName, chairs) {
+    if (cpf === '' || personName === '' || chairs.length === 0) {
+        setFreeToGo(false)
+    }
+    else {
+        setFreeToGo(true)
+    }
+}
+
+function finishing(chairs, chairsName, cpf, personName, setSeat, setFreeToGo) {
+    if (cpf === '' || personName === '' || chairs.length === 0) {
+        setFreeToGo(false)
+        alert('preecha nome e cpf e escolha uma cadeira')
+        return
+    }
     const newArray = []
     const newArrayName = []
     let counter = 0
+    setFreeToGo(true)
     for (let i = 0; i < chairs.length; i++) {
         for (let j = 0; j < chairs.length; j++) {
             if(chairs[i] === chairs[j]) counter++
@@ -126,18 +140,18 @@ function finishing(chairs, chairsName, cpf, name, setSeat) {
         }
     }
 
-    console.log(`nome = ${name} ---- cpf = ${cpf}`);
-    const post = { ids: newArray, name, cpf }
-    console.log(post);
+    // console.log(`nome = ${personName} ---- cpf = ${cpf}`);
+    const post = { ids: newArray, name:personName, cpf }
+    // console.log(post);
     setSeat(newArrayName)
-    console.log(newArrayName);
+    // console.log(newArrayName);
 
-    // const promisse = axios.post('https://mock-api.driven.com.br/api/v4/cineflex/seats/book-many', post)
-    // promisse.then( )
-    // promisse.catch(() => {
-    //     alert('algo deu errado')
-    //     window.location.reload()
-    // })
+    const promisse = axios.post('https://mock-api.driven.com.br/api/v4/cineflex/seats/book-many', post)
+    promisse.then( )
+    promisse.catch(() => {
+        alert('algo deu errado')
+        window.location.reload()
+    })
 }
 
 const Container = styled.div`
@@ -176,6 +190,9 @@ const Circle = styled.div`
     &.clicked{
         background: #8DD7CF;
         border: 1px solid #1AAE9E;
+    }
+    &:hover{
+        cursor: pointer;
     }
 `
 
@@ -236,6 +253,8 @@ const QuestionContainer = styled.div`
     & input {
         width: 327px;
         height: 51px;
+        padding-left: 18px;
+
 
         background: #FFFFFF;
         border: 1px solid #D5D5D5;
@@ -246,11 +265,11 @@ const QuestionContainer = styled.div`
         font-weight: normal;
         font-size: 18px;
         line-height: 21px;
-        color: #AFAFAF;
+        color: black;
     }
 
     & input::placeholder{
-            padding-left: 18px;
+            color: #AFAFAF;
         }
 `
 

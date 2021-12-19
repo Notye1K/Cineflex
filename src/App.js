@@ -8,7 +8,7 @@ import Success from './Components/Success'
 import styled from 'styled-components'
 
 export default function App() {
-    const [name, setName] = useState('')
+    const [personName, setPersonName] = useState('')
     const [cpf, setCpf] = useState('')
     const [movie, setMovie] = useState('')
     const [date, setDate] = useState('')
@@ -21,11 +21,11 @@ export default function App() {
             <Routes>
                 <Route path='/' element={<MainPage />} ></Route>
                 <Route path='/filme/:idFilme' element={<Hours />}></Route>
-                <Route path='/assentos/:idSessao' element={<Seats name={name} setName={setName}
+                <Route path='/assentos/:idSessao' element={<Seats personName={personName} setPersonName={setPersonName}
                     cpf={cpf} setCpf={setCpf} setMovie={setMovie} setDate={setDate} setMovieHour={setMovieHour}
                     setSeat={setSeat}/>}></Route>
                 <Route path='/sucesso' element={<Success movie={movie} date={date} movieHour={movieHour} seat={seat}
-                    name={name} cpf={cpf} setCpf={setCpf} setName={setName} />}></Route>
+                    personName={personName} cpf={cpf} setCpf={setCpf} setPersonName={setPersonName} />}></Route>
             </Routes>
         </BrowserRouter>
     )
