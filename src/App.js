@@ -5,7 +5,7 @@ import MainPage from './Components/MainPage'
 import Hours from './Components/Hours'
 import Seats from './Components/Seats'
 import Success from './Components/Success'
-import styled from 'styled-components'
+import NavBar from './Components/NavBar'
 
 export default function App() {
     const [personName, setPersonName] = useState('')
@@ -17,7 +17,7 @@ export default function App() {
 
     return (
         <BrowserRouter>
-            <Header> CINEFLEX </Header>
+            <NavBar/>
             <Routes>
                 <Route path='/' element={<MainPage />} ></Route>
                 <Route path='/filme/:idFilme' element={<Hours />}></Route>
@@ -31,25 +31,3 @@ export default function App() {
     )
 }
 
-const Header = styled.header`
-    width: 100%;
-    height: 67px;
-
-    background: #C3CFD9;
-
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 34px;
-    line-height: 40px;
-    color: #E8833A;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-
-    position: fixed;
-    top: 0;
-    left: 0;
-`
