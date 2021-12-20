@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import axios from 'axios'
 import { Link } from "react-router-dom"
-import styled from 'styled-components'
+import style from './style.js'
 
-
+const [Container, Image] = style
 
 export default function Movies() {
     const [data, setData] = useState(null)
@@ -16,7 +16,7 @@ export default function Movies() {
     if (data === null) {
         return (
             <>
-                Carregando
+                Carregando ...
             </>
         )
     }
@@ -35,25 +35,3 @@ function Movie({ posterURL, title }) {
         </Image>
     )
 }
-
-const Container = styled.div` 
-    /* margin-left: 38px; */
-
-
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-`
-
-const Image = styled.div`
-    /* margin-right: 38px; */
-    margin-bottom: 27px; 
-
-    & img{
-        width: 129px;
-        height: 193px;
-
-        overflow: hidden;
-    }
-`
